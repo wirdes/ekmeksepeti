@@ -1,0 +1,15 @@
+export const USER_CREATE_INIT = 'USER_CREATE_INIT';
+export const USER_CREATE_FAIL = 'USER_CREATE_FAIL';
+export const USER_CREATE_SUCCESS = 'USER_CREATE_SUCCESS';
+
+export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+
+export const LOGOUT_INIT = 'LOGOUT_INIT';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+
+export const AUTH_INIT = 'AUTH_INIT';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
