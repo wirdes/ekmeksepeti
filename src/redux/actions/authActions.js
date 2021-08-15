@@ -1,78 +1,107 @@
 import {Platform} from 'react-native';
 import * as types from '../types';
 import axios from 'axios';
+import Toast from 'react-native-toast-message';
 
-export const register = ({email, password}) => {
+const ServerIP = 'https://backendfood.herokuapp.com'; // https://backendfood.herokuapp.com // http://localhost:5000
+
+export const register = ({email, password, name, surname}) => {
   return async dispatch => {
+    dispatch({type: types.USER_CREATE_INIT});
     axios
-      .post('http://localhost:5000/api/admin/login', {
-        email: email,
-        password: password,
+      .post(`${ServerIP}/api/admin/register`, {
+        name,
+        surname,
+        email,
+        password,
       })
       .then(response => {
-        setLoading(false);
-        setUserSession(response.data.access_token, response.data.data);
-        props.history.push('/dashboard');
+        return dispatch({
+          type: types.USER_CREATE_SUCCESS,
+          payload: {
+            token: response.access_token,
+            id: response.data.id,
+            email: response.data.email,
+          },
+        });
       })
       .catch(error => {
-        setLoading(false);
-        errorMessage('Email yada şifreniz yanlış');
+        let errorMessages = 'asd';
+        if (error.response !== undefined) {
+          errorMessages = error.response.data.message;
+        } else {
+          errorMessages = 'Bilinmeyen hata';
+        }
+
+        Toast.show({
+          type: 'error',
+          position: 'top',
+          text1: 'Error',
+          text2: errorMessages,
+          visibilityTime: 3000,
+          autoHide: true,
+          // eslint-disable-next-line eqeqeq
+          topOffset: Platform.OS == 'ios' ? 40 : 30,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {},
+        });
+        return dispatch({
+          type: types.USER_CREATE_FAIL,
+          payload: {
+            message: errorMessages,
+          },
+        });
       });
   };
 };
 
 export const login = ({email, password}) => {
   return async dispatch => {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('giris');
+    dispatch({type: types.LOGIN_ATTEMPT});
+    axios
+      .post(`${ServerIP}/api/admin/login`, {
+        email,
+        password,
+      })
+      .then(response => {
+        return dispatch({
+          type: types.LOGIN_SUCCESS,
+          payload: {
+            token: response.access_token,
+            id: response.data.id,
+            email: response.data.email,
+          },
+        });
       })
       .catch(error => {
-        switch (error.code) {
-          case 'auth/invalid-email':
-            return dispatch({
-              type: types.LOGIN_FAILED,
-              payload: {
-                type: 'auth/invalid-email',
-                message: 'Geçersiz e-mail.',
-              },
-            });
-          case 'auth/user-not-found':
-            return dispatch({
-              type: types.LOGIN_FAILED,
-              payload: {
-                type: 'auth/invalid-email',
-                message: 'Geçersiz e-mail.',
-              },
-            });
-          case 'auth/wrong-password':
-            return dispatch({
-              type: types.LOGIN_FAILED,
-              payload: {
-                type: 'auth/wrong-password',
-                message: 'Geçersiz şifre, lütfen kontrol ediniz.',
-              },
-            });
-          case 'auth/too-many-requests':
-            return dispatch({
-              type: types.LOGIN_FAILED,
-              payload: {
-                type: 'auth/wrong-password',
-                message:
-                  'Çok fazla hatalı giriş yaptınız, Lütfen daha sonra tekrar deneyiniz.',
-              },
-            });
-          default:
-            return dispatch({
-              type: types.LOGIN_FAILED,
-              payload: {
-                type: 'auth/',
-                message:
-                  'Lütfen email adresinizi kontrol ediniz ve daha sonra tekrar deneyiniz.',
-              },
-            });
+        console.log(error);
+        let errorMessages = 'asd';
+        if (error.response !== undefined) {
+          errorMessages = error.response.data.message;
+        } else {
+          errorMessages = 'Bilinmeyen hata';
         }
+
+        Toast.show({
+          type: 'error',
+          position: 'top',
+          text1: 'Error',
+          text2: errorMessages,
+          visibilityTime: 3000,
+          autoHide: true,
+          // eslint-disable-next-line eqeqeq
+          topOffset: Platform.OS == 'ios' ? 40 : 30,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {},
+        });
+        return dispatch({
+          type: types.LOGIN_FAILED,
+          payload: {
+            message: errorMessages,
+          },
+        });
       });
   };
 };

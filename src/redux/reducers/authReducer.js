@@ -4,8 +4,8 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isLoading: false,
   userData: {
+    token: null,
     userId: null,
-    createdAt: null,
     email: null,
   },
   error: undefined,
@@ -19,6 +19,7 @@ export default function auth(state = INITIAL_STATE, action) {
         isLoading: true,
       };
     case types.USER_CREATE_FAIL:
+      console.log('asd');
       return {
         ...state,
         isLoading: false,
@@ -28,8 +29,8 @@ export default function auth(state = INITIAL_STATE, action) {
     case types.USER_CREATE_SUCCESS:
       return {
         userData: {
-          userId: action.payload.uid,
-          createdAt: action.payload.metadata.creationTime,
+          userId: action.payload.id,
+          token: action.payload.access_token,
           email: action.payload.email,
         },
         isLoading: false,
@@ -51,8 +52,8 @@ export default function auth(state = INITIAL_STATE, action) {
     case types.AUTH_SUCCESS:
       return {
         userData: {
-          userId: action.payload.uid,
-          createdAt: action.payload.metadata.creationTime,
+          userId: action.payload.id,
+          token: action.payload.access_token,
           email: action.payload.email,
         },
         isLoading: false,
@@ -72,9 +73,9 @@ export default function auth(state = INITIAL_STATE, action) {
         isLoading: false,
         isLoggedIn: true,
         userData: {
-          userId: action.payload.userData.uid,
-          createdAt: action.payload.userData.metadata.creationTime,
-          email: action.payload.userData.email,
+          userId: action.payload.id,
+          token: action.payload.access_token,
+          email: action.payload.email,
         },
         error: undefined,
       };

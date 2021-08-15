@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TextInput as RNTextInput} from 'react-native';
-import {w} from '~/utils';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {H, W, w} from '~/utils';
 
 const TextInput = props => {
   return;
@@ -13,6 +14,7 @@ const SearchBar = props => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
+        <AntDesign name={'search1'} color={'purple'} size={45} />
         <RNTextInput {...props} style={styles.searchInput} />
       </View>
     </View>
@@ -24,19 +26,35 @@ TextInput.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
+    justifyContent: 'center',
     width: w,
     margin: 10,
   },
   inputContainer: {
-    width: '100%',
-    borderRadius: 10,
-    backgroundColor: '#eceff1',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    width: W(80),
+    height: H(7),
+    borderRadius: 15,
+    textAlign: 'center',
+    //shadow-start
+    backgroundColor: '#F5F5F5',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
+    //shadow-end
   },
   searchInput: {
-    color:'black',
+    width: W(60),
+    color: 'black',
     textAlign: 'center',
-    padding: 10,
-    borderWidth: 1,
+    borderWidth: 5,
     borderColor: '#eceff1',
     borderRadius: 10,
   },

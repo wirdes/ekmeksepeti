@@ -12,11 +12,13 @@ import {useSelector} from 'react-redux';
 import {appStyle, H, W, w} from '~/utils';
 import {Logo} from '~/components/Logo';
 
+import * as actions from '../../redux/actions/authActions';
+
 const Register = props => {
   const {error} = useSelector(state => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const login = () => {
+  const register = () => {
     if (email === '' || password === '') {
       Toast.show({
         type: 'error',
@@ -25,14 +27,7 @@ const Register = props => {
       });
       return;
     }
-    props.login(email, password);
-    if (error) {
-      Toast.show({
-        type: 'error',
-        text1: 'Hata',
-        text2: `${error.message} ☠️`,
-      });
-    }
+    props.register(email, password);
   };
 
   return (
@@ -58,7 +53,7 @@ const Register = props => {
           value={password}
           onChangeText={d => setPassword(d)}
         />
-        <TouchableOpacity style={style.button} onPress={login}>
+        <TouchableOpacity style={style.button} onPress={register}>
           <Text style={style.buttonText}>Kayıt Ol</Text>
         </TouchableOpacity>
         <View style={style.register}>
@@ -136,4 +131,16 @@ const style = StyleSheet.create({
   },
 });
 
-export {Register};
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  isLoading: state.auth.isLoading,
+  userData: state.auth.userData,
+  error: state.auth.error,
+});
+
+const mapDispatchToProps = dispatch => ({
+  register: (email, password) =>
+    dispatch(actions.register({name: email, surname: email, email, password})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -5,17 +5,14 @@ import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/authActions';
 import style from './loginStyle';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Logo} from '~/components/Logo';
 
 const Login = props => {
-  const dispatch = useDispatch();
-
-  const {error} = useSelector(state => state.auth);
+  const {isLoading} = useSelector(state => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {userData} = useSelector(state => state.auth);
-  const login = () => {
+  const login = async () => {
     if (email === '' || password === '') {
       Toast.show({
         type: 'error',
@@ -25,13 +22,6 @@ const Login = props => {
       return;
     }
     props.login(email, password);
-    if (error) {
-      Toast.show({
-        type: 'error',
-        text1: 'Hata',
-        text2: `${error.message} ☠️`,
-      });
-    }
   };
 
   return (
@@ -57,8 +47,13 @@ const Login = props => {
           value={password}
           onChangeText={d => setPassword(d)}
         />
-        <TouchableOpacity style={style.button} onPress={login}>
-          <Text style={style.buttonText}>Giriş Yap</Text>
+        <TouchableOpacity
+          activeOpacity={isLoading ? 1 : 0.7}
+          style={style.button}
+          onPress={login}>
+          <Text style={style.buttonText}>
+            {!isLoading ? 'Giriş Yap' : 'Giriş Yapılıyor...'}
+          </Text>
         </TouchableOpacity>
         <View style={style.register}>
           <Text style={style.registerTextPrimary}>

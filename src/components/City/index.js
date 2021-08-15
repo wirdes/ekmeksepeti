@@ -1,10 +1,15 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import {appStyle, H} from '~/utils';
 
-const City = ({item}) => {
+const City = ({item, navigation}) => {
   return (
-    <TouchableOpacity style={{alignItems: 'center'}}>
+    <TouchableOpacity
+      style={{alignItems: 'center'}}
+      onPress={() => {
+        navigation.navigate('City', item);
+      }}>
       <View style={style.container}>
         <Text style={style.textPla}>{item.plaka}</Text>
       </View>
@@ -33,7 +38,6 @@ const style = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    elevation: 7,
     //shadow-end
   },
   textPla: {fontSize: appStyle.buttonTextSize, color: appStyle.secondColor},

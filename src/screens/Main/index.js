@@ -7,7 +7,7 @@ import jsonData from './data.json';
 import {City, SearchBar, TextInput} from '~/components';
 import {appStyle, H} from '~/utils';
 
-const Main = () => {
+const Main = ({navigation}) => {
   const [text, setText] = useState(null);
   const [data, setData] = useState([]);
 
@@ -39,7 +39,7 @@ const Main = () => {
       <SearchBar
         onChangeText={onChangeNumber}
         value={text}
-        placeholder="Şehir Plakası ?"
+        placeholder="Arama ?"
         //keyboardType="numeric"
         placeholderTextColor="black"
       />
@@ -51,7 +51,7 @@ const Main = () => {
           numColumns={3}
           keyExtractor={item => item.plaka.toString()}
           data={data}
-          renderItem={({item}) => <City item={item} />}
+          renderItem={({item}) => <City navigation={navigation} item={item} />}
         />
       ) : (
         <Text>Şehir Bulunamadı..</Text>
