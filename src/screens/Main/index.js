@@ -5,7 +5,7 @@ import {FlatList, View, Text} from 'react-native';
 import jsonData from './data.json';
 
 import {City, SearchBar, TextInput} from '~/components';
-import {appStyle, H} from '~/utils';
+import {H} from '~/utils';
 
 const Main = ({navigation}) => {
   const [text, setText] = useState(null);
