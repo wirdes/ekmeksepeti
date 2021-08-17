@@ -21,7 +21,7 @@ const Register = props => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const register = () => {
-    if (email === '' || password === '') {
+    if (email === '' || password === '' || name === '' || surname === '') {
       Toast.show({
         type: 'error',
         text1: 'Hata',
@@ -29,7 +29,7 @@ const Register = props => {
       });
       return;
     }
-    props.register(email, password);
+    props.register(name, surname, email, password);
   };
 
   return (
@@ -156,8 +156,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  register: (email, password) =>
-    dispatch(actions.register({name: email, surname: email, email, password})),
+  register: (name, surname, email, password) =>
+    dispatch(actions.register({name, surname, email, password})),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
