@@ -18,6 +18,8 @@ const Register = props => {
   const {error} = useSelector(state => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const register = () => {
     if (email === '' || password === '') {
       Toast.show({
@@ -37,6 +39,21 @@ const Register = props => {
       </View>
       <View style={style.form}>
         <Logo color="purple" secondColor="white" noborder />
+        <TextInput
+          style={style.input}
+          autoCapitalize="none"
+          placeholder="Ad"
+          value={name}
+          onChangeText={d => setName(d)}
+        />
+        <TextInput
+          style={style.input}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholder="Soyad"
+          value={surname}
+          onChangeText={d => setSurname(d)}
+        />
         <TextInput
           style={style.input}
           autoCapitalize="none"
@@ -77,7 +94,7 @@ const style = StyleSheet.create({
   register: {
     flexDirection: 'row',
   },
-  form: {flex: 10, alignItems: 'center', width: w},
+  form: {flex: 13, alignItems: 'center', width: w},
   button: {
     width: W(80),
     height: H(7),

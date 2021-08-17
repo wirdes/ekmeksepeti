@@ -24,7 +24,9 @@ const Logo = props => {
   });
   return (
     <View style={style.logo}>
-      <MaterialIcons name={'bakery-dining'} color={props.color} size={200} />
+      {!props.noIcon && (
+        <MaterialIcons name={'bakery-dining'} color={props.color} size={200} />
+      )}
       <Text style={style.text}>Ekmek Sepeti</Text>
     </View>
   );

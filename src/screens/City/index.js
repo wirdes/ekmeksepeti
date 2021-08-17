@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, View, BackHandler, Alert} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appStyle} from '~/utils';
@@ -12,7 +12,33 @@ const Comp = () => {
     </View>
   );
 };
+const Comp1 = () => {
+  return (
+    <View>
+      <Text>ASD1</Text>
+    </View>
+  );
+};
 const City = ({navigation, route}) => {
+  const backAction = () => {
+    Alert.alert('Bekle!', 'Uygulamadan çıkmak istediğine emin misin?', [
+      {
+        text: 'Vazgeç',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {text: 'EVET', onPress: () => BackHandler.exitApp()},
+    ]);
+    return true;
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -38,11 +64,7 @@ const City = ({navigation, route}) => {
 
           return <Icon name={iconName} size={size} color={color} />;
         },
-      })}
-      tabBarOptions={{
-        activeTintColor: appStyle.color,
-        inactiveTintColor: 'white',
-      }}>
+      })}>
       <Tab.Screen
         name="HomeScreen"
         options={{headerShown: false, title: 'Anasayfa'}}
@@ -51,7 +73,7 @@ const City = ({navigation, route}) => {
       <Tab.Screen
         options={{headerShown: false, title: 'Sepet'}}
         name="Sepet"
-        component={Comp}
+        component={Comp1}
       />
       <Tab.Screen
         options={{headerShown: false, title: 'Profil'}}
