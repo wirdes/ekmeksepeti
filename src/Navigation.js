@@ -11,9 +11,9 @@ import Register from './screens/Register';
 const STACK1 = createStackNavigator();
 
 const Navigation = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  const {isLoggedIn} = useSelector(state => state.auth);
-  //const isLoggedIn = true;
+  const [showSplash, setShowSplash] = useState(false);
+  //const {isLoggedIn} = useSelector(state => state.auth);
+  const isLoggedIn = true;
 
   useEffect(() => {
     setTimeout(() => {

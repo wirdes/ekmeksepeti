@@ -3,6 +3,7 @@ import {Text, View, BackHandler, Alert} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appStyle} from '~/utils';
+import {Resturants} from '~/screens';
 const Tab = createBottomTabNavigator();
 
 const Comp = () => {
@@ -19,7 +20,7 @@ const Comp1 = () => {
     </View>
   );
 };
-const City = ({navigation, route}) => {
+const City = prop => {
   const backAction = () => {
     Alert.alert('Bekle!', 'Uygulamadan çıkmak istediğine emin misin?', [
       {
@@ -68,17 +69,20 @@ const City = ({navigation, route}) => {
       <Tab.Screen
         name="HomeScreen"
         options={{headerShown: false, title: 'Anasayfa'}}
-        component={Comp}
+        component={Resturants}
+        initialParams={prop.route.params}
       />
       <Tab.Screen
         options={{headerShown: false, title: 'Sepet'}}
         name="Sepet"
         component={Comp1}
+        initialParams={prop.route.params}
       />
       <Tab.Screen
         options={{headerShown: false, title: 'Profil'}}
         name="ProfileScreen"
         component={Comp}
+        initialParams={prop.route.params}
       />
     </Tab.Navigator>
   );

@@ -14,7 +14,10 @@ const SearchBar = props => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <AntDesign name={'search1'} color={'purple'} size={45} />
+        <View style={styles.icon}>
+          <AntDesign name={'search1'} color={'purple'} size={30} />
+        </View>
+
         <RNTextInput {...props} style={styles.searchInput} />
       </View>
     </View>
@@ -25,6 +28,7 @@ TextInput.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  icon: {justifyContent: 'center', alignItems: 'center'},
   container: {
     alignItems: 'center',
     justifyContent: 'center',

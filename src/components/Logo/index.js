@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {appStyle, H, W} from '~/utils';
+import {W} from '~/utils';
 
 const Logo = props => {
   const style = StyleSheet.create({

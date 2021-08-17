@@ -6,7 +6,7 @@ import * as actions from '../../redux/actions/authActions';
 import style from './loginStyle';
 
 import {useSelector} from 'react-redux';
-import {Logo} from '~/components/Logo';
+import {Logo} from '~/components';
 
 const Login = props => {
   const {isLoading} = useSelector(state => state.auth);

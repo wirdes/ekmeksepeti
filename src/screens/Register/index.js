@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import {useSelector} from 'react-redux';
 import {appStyle, H, W, w} from '~/utils';
-import {Logo} from '~/components/Logo';
+import {Logo} from '~/components';
 
 import * as actions from '../../redux/actions/authActions';
 

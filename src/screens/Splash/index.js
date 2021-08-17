@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Logo} from '~/components/Logo';
+import {View, StyleSheet, Image} from 'react-native';
+
+import {Logo} from '~/components';
 import {appStyle, H, W} from '~/utils';
 
 const Splash = () => {
