@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, StyleSheet, Image, Text} from 'react-native';
+import {
+  FlatList,
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import axios from 'axios';
 
 import {Resturant, SearchBar} from '~/components';
@@ -43,7 +50,14 @@ const Resturants = props => {
           )}
         />
       ) : (
-        <Text>Malesef şehrinizde kayıtlı resturant yok</Text>
+        <>
+          <Text>Malesef şehrinizde kayıtlı resturant yok</Text>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Main')}>
+            <Text style={{color: 'blue'}}>
+              Şehir Değiştirmek için tıklayınız
+            </Text>
+          </TouchableOpacity>
+        </>
       )}
     </View>
   );
