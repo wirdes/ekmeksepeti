@@ -4,7 +4,7 @@ import {FlatList, View, Text} from 'react-native';
 
 import jsonData from './data.json';
 
-import {City, SearchBar, TextInput} from '~/components';
+import {City, SearchBar} from '~/components';
 import {H} from '~/utils';
 
 const Main = ({navigation}) => {
@@ -39,7 +39,7 @@ const Main = ({navigation}) => {
       <SearchBar
         onChangeText={onChangeNumber}
         value={text}
-        placeholder="Arama ?"
+        placeholder="Plaka yada Şehir adı ?"
         //keyboardType="numeric"
         placeholderTextColor="black"
       />

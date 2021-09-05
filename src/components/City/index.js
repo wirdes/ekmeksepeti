@@ -8,7 +8,7 @@ const City = ({item, navigation}) => {
     <TouchableOpacity
       style={{alignItems: 'center'}}
       onPress={() => {
-        navigation.navigate('City', item);
+        navigation.replace('City', item);
       }}>
       <View style={style.container}>
         <Text style={style.textPla}>{item.plaka}</Text>
@@ -40,7 +40,11 @@ const style = StyleSheet.create({
     shadowRadius: 4.65,
     //shadow-end
   },
-  textPla: {fontSize: appStyle.buttonTextSize, color: appStyle.secondColor},
+  textPla: {
+    fontSize: 35,
+    color: appStyle.secondColor,
+    fontWeight: 'bold',
+  },
   textName: {
     fontSize: appStyle.fontSize - 2,
     color: appStyle.color,

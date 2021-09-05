@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
-
 import {Resturant, SearchBar} from '~/components';
 import {H, W} from '~/utils';
 
@@ -52,7 +51,7 @@ const Resturants = props => {
       ) : (
         <>
           <Text>Malesef şehrinizde kayıtlı resturant yok</Text>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Main')}>
+          <TouchableOpacity onPress={() => props.navigation.replace('Main')}>
             <Text style={{color: 'blue'}}>
               Şehir Değiştirmek için tıklayınız
             </Text>

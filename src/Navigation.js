@@ -7,6 +7,7 @@ import {Splash, Main, City} from '~screens';
 import Login from './screens/Login';
 import {useSelector} from 'react-redux';
 import Register from './screens/Register';
+import {Details} from './components/';
 
 const STACK1 = createStackNavigator();
 
@@ -55,6 +56,13 @@ const Navigation = () => {
             },
           }}
         />
+        {/* <STACK1.Screen
+          name="Details"
+          component={Details}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
       </STACK1.Navigator>
     </NavigationContainer>
   );

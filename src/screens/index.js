@@ -4,3 +4,4 @@ export * from './Register';
 export * from './Splash';
 export * from './City';
 export * from './Resturants';
+export * from './Details';
