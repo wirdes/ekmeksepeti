@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, View, BackHandler, Alert} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appStyle} from '~/utils';
-import {Resturants, Details} from '~/screens';
+import {Resturants, Details, Cart} from '~/screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,13 +15,7 @@ const Comp = () => {
     </View>
   );
 };
-const Comp1 = () => {
-  return (
-    <View>
-      <Text>ASD1</Text>
-    </View>
-  );
-};
+
 const City = prop => {
   return (
     <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
@@ -34,7 +28,7 @@ const City = prop => {
       <Tab.Screen
         options={{headerShown: false, title: 'Sepet'}}
         name="Sepet"
-        component={Comp1}
+        component={Cart}
         initialParams={prop.route.params}
       />
       <Tab.Screen

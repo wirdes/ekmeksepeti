@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   error: undefined,
 };
 
-export default function auth(state = INITIAL_STATE, action) {
+function auth(state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.USER_CREATE_INIT:
       return {
@@ -118,3 +118,5 @@ export default function auth(state = INITIAL_STATE, action) {
       return state;
   }
 }
+
+export {auth};

@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
   gif: {
     borderWidth: 2,
     marginTop: H(33),
-    height: H(12),
-    width: W(12),
+    height: H(20),
+    width: W(45),
   },
 });
 

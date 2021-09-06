@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import {appStyle, H, w, W} from '~/utils';
 import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {addToCart} from '~/redux/actions/cartActions';
 
 const colorCalcu = avgPoint => {
   if (avgPoint < 4) {
@@ -24,6 +26,7 @@ const colorCalcu = avgPoint => {
 };
 
 const Details = props => {
+  const dispatch = useDispatch();
   const [id, setId] = useState('');
   const [detailsData, setDetailsData] = useState({
     products: [{}],
@@ -161,7 +164,47 @@ const Details = props => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item, index) => index.toString()}
               data={detailsData.products}
-              renderItem={orderItemRender}
+              renderItem={({item}) => {
+                return (
+                  <View style={styles.orderItem}>
+                    <Image
+                      style={styles.orderImage}
+                      source={{uri: item.image}}
+                    />
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 19,
+                        color: 'black',
+                      }}>
+                      {item.description}
+                    </Text>
+                    <View
+                      style={{
+                        width: W(80),
+                        alignItems: 'baseline',
+                        justifyContent: 'space-around',
+                        flexDirection: 'row',
+                      }}>
+                      <TouchableOpacity
+                        onPress={() => dispatch(addToCart(item))}
+                        style={{
+                          backgroundColor: appStyle.color,
+                          padding: 5,
+                          width: W(60),
+                          borderRadius: 25,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <Text style={{color: 'white', fontWeight: 'bold'}}>
+                          Sepete Ekle
+                        </Text>
+                      </TouchableOpacity>
+                      <Text style={styles.orderPrice}>{item.price + ' ₺'}</Text>
+                    </View>
+                  </View>
+                );
+              }}
             />
           ) : (
             <Text style={{color: appStyle.color, fontSize: 50, margin: 25}}>
@@ -170,38 +213,6 @@ const Details = props => {
           )}
         </>
       )}
-    </View>
-  );
-};
-
-const orderItemRender = ({item}) => {
-  // console.log(item);
-  return (
-    <View style={styles.orderItem}>
-      <Image style={styles.orderImage} source={{uri: item.image}} />
-      <Text style={{fontWeight: 'bold', fontSize: 19, color: 'black'}}>
-        {item.description}
-      </Text>
-      <View
-        style={{
-          width: W(80),
-          alignItems: 'baseline',
-          justifyContent: 'space-around',
-          flexDirection: 'row',
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: appStyle.color,
-            padding: 5,
-            width: W(60),
-            borderRadius: 25,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={{color: 'white', fontWeight: 'bold'}}>Sepete Ekle</Text>
-        </TouchableOpacity>
-        <Text style={styles.orderPrice}> {item.price + ' ₺'}</Text>
-      </View>
     </View>
   );
 };
