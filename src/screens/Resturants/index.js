@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {Resturant, SearchBar} from '~/components';
-import {H, W} from '~/utils';
+import {appStyle, H, W} from '~/utils';
 
 const Resturants = props => {
   const {plaka} = props.route.params;
@@ -31,7 +31,28 @@ const Resturants = props => {
   }, []);
   return (
     <View style={styles.container}>
-      <SearchBar />
+      <Text
+        style={{
+          //shadow-start
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 3,
+          },
+          shadowOpacity: 0.29,
+          shadowRadius: 4.65,
+          elevation: 7,
+          //shadow-end
+          textAlign: 'center',
+          backgroundColor: appStyle.secondColor,
+          fontWeight: 'bold',
+          color: appStyle.color,
+          fontSize: 45,
+          width: W(98),
+          borderRadius: 7,
+        }}>
+        Restorantlarımız
+      </Text>
       {loading ? (
         <Image
           style={styles.gif}
