@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, Text} from 'react-native';
+import {FlatList, View, Text, Button} from 'react-native';
 
 import jsonData from './data.json';
 
@@ -43,6 +43,7 @@ const Main = ({navigation}) => {
         //keyboardType="numeric"
         placeholderTextColor="black"
       />
+
       {!data.length <= 0 ? (
         <FlatList
           showsVerticalScrollIndicator={false}

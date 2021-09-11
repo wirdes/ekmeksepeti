@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import Toast from 'react-native-toast-message';
 import {View, TouchableOpacity, Text, TextInput} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import * as actions from '../../redux/actions/authActions';
 import style from './loginStyle';
-
-import {useSelector} from 'react-redux';
 import {Logo} from '~/components';
 
 const Login = props => {

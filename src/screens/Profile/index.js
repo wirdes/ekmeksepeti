@@ -43,7 +43,7 @@ const Profile = props => {
         </TouchableOpacity>
         <TouchableOpacity
           style={style.bodyElements}
-          onPress={() => props.navigation.navigate('AddAddress')}>
+          onPress={() => props.navigation.navigate('Adres Ekleme')}>
           <Text style={style.bodyElementsText}>Adres Değiştir</Text>
         </TouchableOpacity>
         <TouchableOpacity style={style.bodyElements}>

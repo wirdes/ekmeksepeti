@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
-import {Resturant, SearchBar} from '~/components';
+import {Resturant} from '~/components';
 import {appStyle, H, W} from '~/utils';
 
 const Resturants = props => {
@@ -59,16 +59,18 @@ const Resturants = props => {
           source={require('../../assets/img/loading3.gif')}
         />
       ) : !productList.length <= 0 ? (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          //scrollEnabled={false}
-          keyExtractor={(item, index) => index.toString()}
-          data={productList}
-          renderItem={({item}) => (
-            <Resturant navigation={props.navigation} item={item} />
-          )}
-        />
+        <>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            //scrollEnabled={false}
+            keyExtractor={(item, index) => index.toString()}
+            data={productList}
+            renderItem={({item}) => (
+              <Resturant navigation={props.navigation} item={item} />
+            )}
+          />
+        </>
       ) : (
         <>
           <Text>Malesef şehrinizde kayıtlı resturant yok</Text>

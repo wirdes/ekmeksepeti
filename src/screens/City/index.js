@@ -70,7 +70,7 @@ const City = prop => {
               };
               return label === 'Details' ||
                 label === 'OrderDetails' ||
-                label === 'AddAddress' ? null : (
+                label === 'Adres Ekleme' ? null : (
                 <TouchableOpacity
                   onPress={onPress}
                   onLongPress={onLongPress}
@@ -128,12 +128,12 @@ const City = prop => {
         }}
       />
       <Tab.Screen
-        name="AddAddress"
-        component={AddAddress}
+        name="Adres Ekleme"
         options={{
           showIcon: false,
           headerShown: false,
         }}
+        component={AddAddress}
       />
     </Tab.Navigator>
   );

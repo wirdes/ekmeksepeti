@@ -109,6 +109,55 @@ export const login = ({email, password}) => {
       });
   };
 };
+export const updateProfile = userId => {
+  return async dispatch => {
+    dispatch({type: types.LOGIN_ATTEMPT});
+    axios
+      .post(`${ServerIP}/api/admin/updateProfile`, {
+        adminId: userId,
+      })
+      .then(response => {
+        return dispatch({
+          type: types.LOGIN_SUCCESS,
+          payload: {
+            id: response.data.data._id,
+            email: response.data.data.email,
+            name: response.data.data.name,
+            surname: response.data.data.surname,
+            address: response.data.data.address,
+          },
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        let errorMessages = 'asd';
+        if (error.response !== undefined) {
+          errorMessages = error.response.data.message;
+        } else {
+          errorMessages = 'Bilinmeyen hata';
+        }
+
+        Toast.show({
+          type: 'error',
+          position: 'top',
+          text1: 'Error',
+          visibilityTime: 3000,
+          autoHide: true,
+          // eslint-disable-next-line eqeqeq
+          topOffset: Platform.OS == 'ios' ? 40 : 30,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {},
+        });
+        return dispatch({
+          type: types.LOGIN_FAILED,
+          payload: {
+            message: errorMessages,
+          },
+        });
+      });
+  };
+};
 
 export const logoutUser = () => {
   return async dispatch => {

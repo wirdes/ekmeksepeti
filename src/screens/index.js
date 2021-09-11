@@ -9,3 +9,4 @@ export * from './Details';
 export * from './OrderDetails';
 export * from './Profile';
 export * from './AddAdress';
+export * from './PastOrders';

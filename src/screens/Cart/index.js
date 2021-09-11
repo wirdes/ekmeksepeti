@@ -57,13 +57,14 @@ const Cart = props => {
       userId: userData.userId,
       orderElements: itemsCounter,
       address: userData.address,
+      total: totalPrice.toString(),
     };
     try {
-      let ad = await axios.post(
+      let {data} = await axios.post(
         'https://backendfood.herokuapp.com/api/orders/add',
         body,
       );
-      navigation.navigate('OrderDetails');
+      navigation.navigate('OrderDetails', data);
     } catch (e) {
       console.log(e);
     }
