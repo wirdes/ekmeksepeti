@@ -4,9 +4,11 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isLoading: false,
   userData: {
-    token: null,
     userId: null,
     email: null,
+    name: null,
+    surname: null,
+    address: null,
   },
   error: undefined,
 };
@@ -30,8 +32,10 @@ function auth(state = INITIAL_STATE, action) {
       return {
         userData: {
           userId: action.payload.id,
-          token: action.payload.access_token,
           email: action.payload.email,
+          name: action.payload.name,
+          surname: action.payload.surname,
+          address: action.payload.address,
         },
         isLoading: false,
         error: null,
@@ -53,8 +57,10 @@ function auth(state = INITIAL_STATE, action) {
       return {
         userData: {
           userId: action.payload.id,
-          token: action.payload.access_token,
           email: action.payload.email,
+          name: action.payload.name,
+          surname: action.payload.surname,
+          address: action.payload.address,
         },
         isLoading: false,
         error: null,
@@ -74,8 +80,10 @@ function auth(state = INITIAL_STATE, action) {
         isLoggedIn: true,
         userData: {
           userId: action.payload.id,
-          token: action.payload.access_token,
           email: action.payload.email,
+          name: action.payload.name,
+          surname: action.payload.surname,
+          address: action.payload.address,
         },
         error: undefined,
       };

@@ -4,7 +4,14 @@ import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appStyle} from '~/utils';
-import {Resturants, Details, Cart, Profile} from '~/screens';
+import {
+  Resturants,
+  Details,
+  Cart,
+  Profile,
+  OrderDetails,
+  AddAddress,
+} from '~/screens';
 import {Badge} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
@@ -61,7 +68,9 @@ const City = prop => {
                   target: route.key,
                 });
               };
-              return label === 'Details' ? null : (
+              return label === 'Details' ||
+                label === 'OrderDetails' ||
+                label === 'AddAddress' ? null : (
                 <TouchableOpacity
                   onPress={onPress}
                   onLongPress={onLongPress}
@@ -105,6 +114,22 @@ const City = prop => {
       <Tab.Screen
         name="Details"
         component={Details}
+        options={{
+          showIcon: false,
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="OrderDetails"
+        component={OrderDetails}
+        options={{
+          showIcon: false,
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="AddAddress"
+        component={AddAddress}
         options={{
           showIcon: false,
           headerShown: false,

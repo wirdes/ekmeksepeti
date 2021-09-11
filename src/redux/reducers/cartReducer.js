@@ -60,6 +60,12 @@ function cart(state = INITIAL_STATE, action) {
         items: a,
         itemsCounter: aCounter,
       };
+    case types.CLEAR_TO_CART:
+      return {
+        ...state,
+        items: [],
+        itemsCounter: [],
+      };
 
     default:
       return state;

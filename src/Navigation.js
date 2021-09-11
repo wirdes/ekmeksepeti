@@ -10,8 +10,8 @@ const STACK1 = createStackNavigator();
 
 const Navigation = () => {
   const [showSplash, setShowSplash] = useState(false);
-  //const {isLoggedIn} = useSelector(state => state.auth);
-  const isLoggedIn = true;
+  const {isLoggedIn} = useSelector(state => state.auth);
+  //const isLoggedIn = true;
 
   useEffect(() => {
     setTimeout(() => {

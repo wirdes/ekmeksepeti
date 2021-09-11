@@ -21,6 +21,11 @@ export const removeFromCart = p => {
     });
   };
 };
+export const clearCart = () => {
+  return async dispatch => {
+    return dispatch({type: types.CLEAR_TO_CART});
+  };
+};
 
 export const onDecrease = p => {
   return async dispatch => {

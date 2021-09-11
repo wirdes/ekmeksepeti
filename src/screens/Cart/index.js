@@ -1,7 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   onDecrease,
@@ -10,10 +17,13 @@ import {
 } from '~/redux/actions/cartActions';
 import {appStyle, H, w, W} from '~/utils';
 import InputSpinner from 'react-native-input-spinner';
+import axios from 'axios';
 
-const Cart = () => {
+const Cart = props => {
   const dispatch = useDispatch();
   const {items, itemsCounter} = useSelector(state => state.cart);
+  const {userData} = useSelector(state => state.auth);
+  const [loading, setLoading] = useState(false);
 
   const totalPrice = items.reduce(
     (prev, cur) =>
@@ -22,13 +32,49 @@ const Cart = () => {
         itemsCounter[itemsCounter.findIndex(e => e._id === cur._id)].quantity,
     0,
   );
+  const orderComplate = async navigation => {
+    setLoading(true);
+    if (userData.address === undefined) {
+      setLoading(false);
+      Alert.alert(
+        'Adres Hatası',
+        'Lütfen sipariş vermeden önce adres ekleyiniz',
+        [
+          {
+            text: 'Adres Ekle',
+            onPress: () => navigation.navigate('AddAddress'),
+            style: 'cancel',
+          },
+          {
+            text: 'Tamam',
+            style: 'cancel',
+          },
+        ],
+      );
+      return;
+    }
+    const body = {
+      userId: userData.userId,
+      orderElements: itemsCounter,
+      address: userData.address,
+    };
+    try {
+      let ad = await axios.post(
+        'https://backendfood.herokuapp.com/api/orders/add',
+        body,
+      );
+      navigation.navigate('OrderDetails');
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <View style={style.container}>
       {!itemsCounter.length <= 0 ? (
         <Text
           style={style.mainText}>{`Sepetteki Ürünler : ${items.length}`}</Text>
       ) : (
-        <Text style={style.mainText}>{`Sepet boş`}</Text>
+        <Text style={style.mainText}>{'Sepet boş'}</Text>
       )}
 
       <View style={style.list}>
@@ -142,6 +188,7 @@ const Cart = () => {
                   fontWeight: 'bold',
                 }}>{`Toplam: ${totalPrice}₺`}</Text>
               <TouchableOpacity
+                onPress={() => orderComplate(props.navigation)}
                 style={{
                   borderRadius: 5,
                   backgroundColor: appStyle.color,
@@ -155,7 +202,7 @@ const Cart = () => {
                     color: appStyle.secondColor,
                     fontWeight: 'bold',
                   }}>
-                  Onayla
+                  {loading ? 'Onaylanıyor..' : 'Onayla'}
                 </Text>
               </TouchableOpacity>
             </View>

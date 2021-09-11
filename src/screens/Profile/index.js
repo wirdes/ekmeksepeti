@@ -2,9 +2,13 @@ import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {appStyle, H, W} from '~/utils';
+import {useDispatch, useSelector} from 'react-redux';
+import {logoutUser} from '~/redux/actions/authActions';
 
 const Profile = props => {
-  return (
+  const dispatch = useDispatch();
+  const {userData, isLoggedIn} = useSelector(state => state.auth);
+  return isLoggedIn ? (
     <View style={style.container}>
       <View style={style.header}>
         <View style={style.avatarContainer}>
@@ -12,18 +16,23 @@ const Profile = props => {
             containerStyle={{backgroundColor: appStyle.color}}
             size="large"
             rounded
-            title="ME"
+            title={`${userData.name.charAt(0).toUpperCase()}${userData.surname
+              .charAt(0)
+              .toUpperCase()}`}
           />
         </View>
         <View style={{width: W(73)}}>
           <View>
-            <Text style={style.nameSurname}>{`${'Mert'} ${'Erim'}`}</Text>
+            <Text
+              style={
+                style.nameSurname
+              }>{`${userData.name} ${userData.surname}`}</Text>
           </View>
-          <Text
-            numberOfLines={2}
-            style={
-              style.addressText
-            }>{`${'Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.'}`}</Text>
+          <Text numberOfLines={2} style={style.addressText}>
+            {userData.address !== undefined
+              ? `${userData.address}`
+              : 'Adres Ekleyiniz'}
+          </Text>
         </View>
       </View>
       <View style={style.body}>
@@ -32,18 +41,25 @@ const Profile = props => {
           onPress={() => props.navigation.replace('Main')}>
           <Text style={style.bodyElementsText}>Şehir Değiştir</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={style.bodyElements}>
+        <TouchableOpacity
+          style={style.bodyElements}
+          onPress={() => props.navigation.navigate('AddAddress')}>
           <Text style={style.bodyElementsText}>Adres Değiştir</Text>
         </TouchableOpacity>
         <TouchableOpacity style={style.bodyElements}>
           <Text style={style.bodyElementsText}>Siparişleri Gör</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={style.bodyElements}>
+        <TouchableOpacity
+          style={style.bodyElements}
+          onPress={() => {
+            props.navigation.replace('Main');
+            return dispatch(logoutUser());
+          }}>
           <Text style={style.bodyElementsText}>Çıkış Yap</Text>
         </TouchableOpacity>
       </View>
     </View>
-  );
+  ) : null;
 };
 
 export {Profile};

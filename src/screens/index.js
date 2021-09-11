@@ -6,4 +6,6 @@ export * from './City';
 export * from './Cart';
 export * from './Resturants';
 export * from './Details';
+export * from './OrderDetails';
 export * from './Profile';
+export * from './AddAdress';
