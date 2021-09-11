@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {useSelector} from 'react-redux';
@@ -33,7 +34,7 @@ const Register = props => {
   };
 
   return (
-    <View style={style.container}>
+    <ScrollView showsVerticalScrollIndicator={false} style={style.container}>
       <View style={style.toast}>
         <Toast ref={ref => Toast.setRef(ref)} />
       </View>
@@ -82,11 +83,11 @@ const Register = props => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 const style = StyleSheet.create({
-  container: {flex: 1, alignItems: 'center', width: w},
+  // container: {flex: 1, alignItems: 'center', width: w},
   toast: {
     flex: 1,
     width: w,

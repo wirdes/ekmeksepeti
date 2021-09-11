@@ -1,10 +1,29 @@
+import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {Text, View, FlatList, Image, StyleSheet} from 'react-native';
 import {H, W} from '~/utils';
 
 const OrderDetails = props => {
-  const p = props.route.params.orderElements;
-
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
+  async function fetchData(id) {
+    const {data} = await axios.get(
+      'https://backendfood.herokuapp.com/api/orders/get?id=' + id,
+    );
+    setData(data.data);
+    console.log(data.data);
+    setLoading(true);
+  }
+  useEffect(() => {
+    if (props.route.params.past) {
+      fetchData(props.route.params.id);
+      console.log(props.route.params.past);
+    } else {
+      setData(props.route.params);
+      console.log(data);
+      console.log(3);
+    }
+  }, [props]);
   const renderItem = ({item}) => {
     return (
       <View style={style.renderItem}>
@@ -23,25 +42,26 @@ const OrderDetails = props => {
     );
   };
 
-  return (
+  return loading ? (
     <View style={style.container}>
       <View style={style.headers}>
         <Text style={style.headersText}>Fatura Detayı</Text>
-        <Text>{'Adres: ' + props.route.params.address}</Text>
-        <Text>{'Tarih: ' + props.route.params.orderTime}</Text>
+        <Text>{'Adres: ' + data.address}</Text>
+        <Text>{'Tarih: ' + data.orderTime}</Text>
       </View>
-
       <FlatList
         keyExtractor={(item, index) => index.toString()}
-        data={p}
+        data={data.orderElements}
         renderItem={renderItem}
       />
       <View style={style.priceContainer}>
         <Text style={style.priceText}>
-          {'Fatura Tutarı: ' + props.route.params.total + ' ₺'}
+          {'Fatura Tutarı: ' + data.total + ' ₺'}
         </Text>
       </View>
     </View>
+  ) : (
+    <Text>Yükleniyor</Text>
   );
 };
 

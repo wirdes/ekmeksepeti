@@ -8,12 +8,14 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   onDecrease,
   onIncrease,
   removeFromCart,
+  clearCart,
 } from '~/redux/actions/cartActions';
 import {appStyle, H, w, W} from '~/utils';
 import InputSpinner from 'react-native-input-spinner';
@@ -42,7 +44,7 @@ const Cart = props => {
         [
           {
             text: 'Adres Ekle',
-            onPress: () => navigation.navigate('AddAddress'),
+            onPress: () => navigation.navigate('Adres Ekleme'),
             style: 'cancel',
           },
           {
@@ -64,7 +66,9 @@ const Cart = props => {
         'https://backendfood.herokuapp.com/api/orders/add',
         body,
       );
-      navigation.navigate('OrderDetails', data);
+      navigation.navigate('OrderDetails', {...data, past: false});
+      dispatch(clearCart());
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }

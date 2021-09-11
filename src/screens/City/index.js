@@ -11,6 +11,7 @@ import {
   Profile,
   OrderDetails,
   AddAddress,
+  PastOrders,
 } from '~/screens';
 import {Badge} from 'react-native-elements';
 import {useSelector} from 'react-redux';
@@ -70,7 +71,8 @@ const City = prop => {
               };
               return label === 'Details' ||
                 label === 'OrderDetails' ||
-                label === 'Adres Ekleme' ? null : (
+                label === 'Adres Ekleme' ||
+                label === 'pastorder' ? null : (
                 <TouchableOpacity
                   onPress={onPress}
                   onLongPress={onLongPress}
@@ -134,6 +136,14 @@ const City = prop => {
           headerShown: false,
         }}
         component={AddAddress}
+      />
+      <Tab.Screen
+        name="pastorder"
+        options={{
+          showIcon: false,
+          headerShown: false,
+        }}
+        component={PastOrders}
       />
     </Tab.Navigator>
   );

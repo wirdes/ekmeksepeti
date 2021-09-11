@@ -46,7 +46,9 @@ const Profile = props => {
           onPress={() => props.navigation.navigate('Adres Ekleme')}>
           <Text style={style.bodyElementsText}>Adres Değiştir</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={style.bodyElements}>
+        <TouchableOpacity
+          style={style.bodyElements}
+          onPress={() => props.navigation.navigate('pastorder')}>
           <Text style={style.bodyElementsText}>Siparişleri Gör</Text>
         </TouchableOpacity>
         <TouchableOpacity
