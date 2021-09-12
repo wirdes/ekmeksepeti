@@ -46,6 +46,7 @@ const Login = props => {
           onChangeText={d => setPassword(d)}
         />
         <TouchableOpacity
+          disabled={isLoading}
           activeOpacity={isLoading ? 1 : 0.7}
           style={style.button}
           onPress={login}>

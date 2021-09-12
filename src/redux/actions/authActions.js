@@ -42,8 +42,7 @@ export const register = ({email, password, name, surname}) => {
           text2: errorMessages,
           visibilityTime: 3000,
           autoHide: true,
-          // eslint-disable-next-line eqeqeq
-          topOffset: Platform.OS == 'ios' ? 40 : 30,
+          topOffset: Platform.OS === 'ios' ? 40 : 30,
           onShow: () => {},
           onHide: () => {},
           onPress: () => {},
@@ -143,8 +142,7 @@ export const updateProfile = userId => {
           text1: 'Error',
           visibilityTime: 3000,
           autoHide: true,
-          // eslint-disable-next-line eqeqeq
-          topOffset: Platform.OS == 'ios' ? 40 : 30,
+          topOffset: Platform.OS === 'ios' ? 40 : 30,
           onShow: () => {},
           onHide: () => {},
           onPress: () => {},

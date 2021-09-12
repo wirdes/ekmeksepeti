@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {appStyle, H, numberToColorHsl, W} from '~/utils';
+import {appStyle, H,  W} from '~/utils';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Resturant = prop => {

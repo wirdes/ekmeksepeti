@@ -16,7 +16,7 @@ import {Logo} from '~/components';
 import * as actions from '../../redux/actions/authActions';
 
 const Register = props => {
-  const {error} = useSelector(state => state.auth);
+  const {isLoading} = useSelector(state => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -71,8 +71,13 @@ const Register = props => {
           value={password}
           onChangeText={d => setPassword(d)}
         />
-        <TouchableOpacity style={style.button} onPress={register}>
-          <Text style={style.buttonText}>Kayıt Ol</Text>
+        <TouchableOpacity
+          style={style.button}
+          disabled={isLoading}
+          onPress={register}>
+          <Text style={style.buttonText}>
+            {!isLoading ? 'Kayıt Ol' : 'Bekleyiniz...'}
+          </Text>
         </TouchableOpacity>
         <View style={style.register}>
           <Text style={style.registerTextPrimary}>

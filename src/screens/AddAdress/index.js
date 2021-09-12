@@ -34,11 +34,13 @@ const AddAddress = props => {
       });
       dispatch(updateProfile(userData.userId));
 
-      setTimeout(() => navigation.navigate('HomeScreen'), 3000);
+      setTimeout(() => {
+        navigation.navigate('HomeScreen');
+        setIsLoading(false);
+      }, 3000);
     } catch (e) {
       console.log(e);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -62,6 +64,7 @@ const AddAddress = props => {
         />
 
         <TouchableOpacity
+          disabled={isLoading}
           activeOpacity={isLoading ? 1 : 0.5}
           onPress={() => updateAddress(props.navigation)}
           style={style.button}>

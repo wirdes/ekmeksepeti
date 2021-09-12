@@ -27,7 +27,6 @@ const colorCalcu = avgPoint => {
 
 const Details = props => {
   const dispatch = useDispatch();
-  const [id, setId] = useState('');
   const [detailsData, setDetailsData] = useState({
     products: [{}],
     resturant: [{}],
@@ -293,7 +292,6 @@ const styles = StyleSheet.create({
     color: appStyle.color2,
     fontWeight: 'bold',
     fontSize: 11,
-    //margin: 3,
   },
 });
 

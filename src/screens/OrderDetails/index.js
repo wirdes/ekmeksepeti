@@ -11,17 +11,14 @@ const OrderDetails = props => {
       'https://backendfood.herokuapp.com/api/orders/get?id=' + id,
     );
     setData(data.data);
-    console.log(data.data);
     setLoading(true);
   }
   useEffect(() => {
     if (props.route.params.past) {
       fetchData(props.route.params.id);
-      console.log(props.route.params.past);
     } else {
       setData(props.route.params);
-      console.log(data);
-      console.log(3);
+      setLoading(true);
     }
   }, [props]);
   const renderItem = ({item}) => {

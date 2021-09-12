@@ -4,12 +4,6 @@ import {TextInput as RNTextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {H, W, w} from '~/utils';
 
-const TextInput = props => {
-  return;
-};
-
-export {TextInput};
-
 const SearchBar = props => {
   return (
     <View style={styles.container}>
@@ -22,9 +16,6 @@ const SearchBar = props => {
       </View>
     </View>
   );
-};
-TextInput.propTypes = {
-  ...RNTextInput.propTypes,
 };
 
 const styles = StyleSheet.create({

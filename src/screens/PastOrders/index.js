@@ -1,6 +1,6 @@
 /* eslint-disable react/self-closing-comp */
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   Text,
   FlatList,
@@ -28,7 +28,7 @@ const PastOrders = props => {
   }
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetchData();
     setRefreshing(false);
@@ -70,7 +70,6 @@ const PastOrders = props => {
           keyExtractor={(item, index) => index.toString()}
           data={productList}
           renderItem={renderItem}
-          inverted={true}
         />
       </View>
     </View>

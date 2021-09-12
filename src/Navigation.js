@@ -9,9 +9,8 @@ import Register from './screens/Register';
 const STACK1 = createStackNavigator();
 
 const Navigation = () => {
-  const [showSplash, setShowSplash] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   const {isLoggedIn} = useSelector(state => state.auth);
-  //const isLoggedIn = true;
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,7 +47,6 @@ const Navigation = () => {
           options={{
             headerShown: false,
             headerLeft: () => {
-              //TODO Back Button'ı kaldırır.
               return null;
             },
           }}

@@ -8,7 +8,6 @@ import {
   Image,
   Alert,
   TouchableOpacity,
-  RefreshControl,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -193,6 +192,7 @@ const Cart = props => {
                   fontWeight: 'bold',
                 }}>{`Toplam: ${totalPrice}₺`}</Text>
               <TouchableOpacity
+                disabled={loading}
                 onPress={() => orderComplate(props.navigation)}
                 style={{
                   borderRadius: 5,
