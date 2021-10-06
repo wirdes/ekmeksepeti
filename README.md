@@ -35,7 +35,7 @@ npx react-native run-android
 # Screen Shots Gif
 
 <p align="center">
-  <img width=350 height=700 src="ekmeksepeti.gif" />
+  <img width=284 height=600 src="ekmeksepeti.gif" />
 </p>
 
 
