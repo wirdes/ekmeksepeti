@@ -15,10 +15,22 @@ We have made a food ordering system. It will help the restaurant to do all the f
 
 # 📝Steps to run
 <br>
-1. Clone this repository, using `git clone https://github.com/wirdes/ekmeksepeti.git`
-2. Install all package, using `yarn install` or `npm install`
-3. Run app, using `yarn android` or `npx react-native run-android`
+1. Clone this repository, using `git clone https://github.com/wirdes/ekmeksepeti.git` <br>
+
+after
+
+```sh
+cd ekmeksepeti
+yarn install
+yarn android
+```
+or
 <br>
+```sh
+cd ekmeksepeti
+npm install
+npx react-native run-android
+```
 
 # Screen Shots Gif
 
