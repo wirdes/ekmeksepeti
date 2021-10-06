@@ -23,10 +23,9 @@ const Profile = props => {
         </View>
         <View style={{width: W(73)}}>
           <View>
-            <Text
-              style={
-                style.nameSurname
-              }>{`${userData.name} ${userData.surname}`}</Text>
+            <Text style={style.nameSurname}>
+              {`${userData.name} ${userData.surname}`}
+            </Text>
           </View>
           <Text numberOfLines={2} style={style.addressText}>
             {userData.address !== undefined
@@ -39,17 +38,17 @@ const Profile = props => {
         <TouchableOpacity
           style={style.bodyElements}
           onPress={() => props.navigation.replace('Main')}>
-          <Text style={style.bodyElementsText}>Şehir Değiştir</Text>
+          <Text style={style.bodyElementsText}> Şehir Değiştir </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={style.bodyElements}
           onPress={() => props.navigation.navigate('Adres Ekleme')}>
-          <Text style={style.bodyElementsText}>Adres Değiştir</Text>
+          <Text style={style.bodyElementsText}> Adres Değiştir </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={style.bodyElements}
           onPress={() => props.navigation.navigate('pastorder')}>
-          <Text style={style.bodyElementsText}>Siparişleri Gör</Text>
+          <Text style={style.bodyElementsText}> Siparişleri Gör </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={style.bodyElements}
@@ -57,7 +56,7 @@ const Profile = props => {
             props.navigation.replace('Main');
             return dispatch(logoutUser());
           }}>
-          <Text style={style.bodyElementsText}>Çıkış Yap</Text>
+          <Text style={style.bodyElementsText}> Çıkış Yap </Text>
         </TouchableOpacity>
       </View>
     </View>

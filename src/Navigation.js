@@ -46,9 +46,6 @@ const Navigation = () => {
           component={City}
           options={{
             headerShown: false,
-            headerLeft: () => {
-              return null;
-            },
           }}
         />
       </STACK1.Navigator>
