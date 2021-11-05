@@ -8,7 +8,7 @@ I have made a food ordering system. It will help the restaurant to do all the fu
 # 💻 Backend 
 - Backend - NodeJS
 - Database - MongoDb
-- link: soon
+- link: https://github.com/wirdes/ekmeksepeti-backend
 
 
 <br>
